@@ -210,14 +210,64 @@ class core_course_renderer extends plugin_renderer_base {
      * @param object $course The course that will be displayed
      * @return string The composed HTML for the module
      */
-    public function course_modchooser($modules, $course) {
-        global $OUTPUT;
+    public function course_modchooser2($modules, $course, $section) {
+        global $OUTPUT, $CFG;
+
+        // Put everything into one tag 'options'
+        $formcontent .= html_writer::start_tag('div', array('class' => 'options'));
+        $formcontent .= html_writer::tag('div', 'Seleccione una actividad o recurso para agregarla al curso.',
+                array('class' => 'instruction'));
+        // Put all options into one tag 'alloptions' to allow us to handle scrolling
+        $formcontent .= html_writer::start_tag('div', array('class' => 'alloptions'));
+
+         // Activities
+        $activities = array_filter($modules, function($mod) {
+            return ($mod->archetype !== MOD_ARCHETYPE_RESOURCE && $mod->archetype !== MOD_ARCHETYPE_SYSTEM);
+        });
+
+        if (count($activities)) {
+            $formcontent .= $this->course_modchooser_title2('activities', null, $section);
+            $formcontent .= $this->course_modchooser_module_types2($activities, $section);
+        }
+
+        // Resources
+        $resources = array_filter($modules, function($mod) {
+            return ($mod->archetype === MOD_ARCHETYPE_RESOURCE);
+        });
+        if (count($resources)) {
+            $formcontent .= $this->course_modchooser_title2('resources', null, $section);
+            $formcontent .= $this->course_modchooser_module_types2($resources, $section);
+        }
+
+        $formcontent .= html_writer::end_tag('div'); // modoptions
+        $formcontent .= html_writer::end_tag('div'); // types
+
+        // Wrap the whole form in a div
+        $formcontent = html_writer::tag('div', $formcontent, array('id' => 'chooseform'));
+
+        // Put all of the content together
+        $content = $formcontent;
+
+        $content = html_writer::tag('div', $content, array('class' => 'abc'));
+        return $header . html_writer::tag('div', $content, array('class' => 'abcd'));
+    }
+
+    /**
+     * Build the HTML for the module chooser javascript popup
+     *
+     * @param array $modules A set of modules as returned form @see
+     * get_module_metadata
+     * @param object $course The course that will be displayed
+     * @return string The composed HTML for the module
+     */
+    public function course_modchooser($modules, $course, $section) {
+        global $OUTPUT, $CFG;
 
         // Add the header
         $header = html_writer::tag('div', get_string('addresourceoractivity', 'moodle'),
                 array('class' => 'hd choosertitle'));
-
-        $formcontent = html_writer::start_tag('form', array('action' => new moodle_url('/course/jumpto.php'),
+	
+        $formcontent .= html_writer::start_tag('form', array('action' => new moodle_url('/course/jumpto.php'),
                 'id' => 'chooserform', 'method' => 'post'));
         $formcontent .= html_writer::start_tag('div', array('id' => 'typeformdiv'));
         $formcontent .= html_writer::tag('input', '', array('type' => 'hidden', 'id' => 'course',
@@ -239,6 +289,7 @@ class core_course_renderer extends plugin_renderer_base {
         $activities = array_filter($modules, function($mod) {
             return ($mod->archetype !== MOD_ARCHETYPE_RESOURCE && $mod->archetype !== MOD_ARCHETYPE_SYSTEM);
         });
+
         if (count($activities)) {
             $formcontent .= $this->course_modchooser_title('activities');
             $formcontent .= $this->course_modchooser_module_types($activities);
@@ -269,7 +320,6 @@ class core_course_renderer extends plugin_renderer_base {
 
         // Put all of the content together
         $content = $formcontent;
-
         $content = html_writer::tag('div', $content, array('class' => 'choosercontainer'));
         return $header . html_writer::tag('div', $content, array('class' => 'chooserdialoguebody'));
     }
@@ -296,6 +346,23 @@ class core_course_renderer extends plugin_renderer_base {
         return $return;
     }
 
+    protected function course_modchooser_module_types2($modules, $section) {
+        $return = '';
+        foreach ($modules as $module) {
+            if (!isset($module->types)) {
+                $return .= $this->course_modchooser_module_link2($module, null, $section);
+            } else {
+		$return .= '<ul>';
+                $return .= $this->course_modchooser_module_link2($module, array('nonoption'), $section);
+                foreach ($module->types as $type) {
+                    $return .= $this->course_modchooser_module_link2($type, array('option', 'subtype'), $section);
+                }
+		$return .= '</ul>';
+            }
+        }
+        return $return;
+    }
+
     /**
      * Return the HTML for the specified module adding any required classes
      *
@@ -312,7 +379,7 @@ class core_course_renderer extends plugin_renderer_base {
         $output .= html_writer::start_tag('div', array('class' => implode(' ', $classes)));
         $output .= html_writer::start_tag('label', array('for' => 'module_' . $module->name));
         if (!isset($module->types)) {
-            $output .= html_writer::tag('input', '', array('type' => 'radio',
+	    $output .= html_writer::tag('input', '', array('type' => 'radio',
                     'name' => 'jumplink', 'id' => 'module_' . $module->name, 'value' => $module->link));
         }
 
@@ -346,6 +413,61 @@ class core_course_renderer extends plugin_renderer_base {
         return $output;
     }
 
+    protected function course_modchooser_module_link2($module, $classes = array('option'), $section) {
+        $output = '';
+	$url = $module->link;
+
+	if (isset($url)) {
+		# Is a module, then order it in a list
+		$output .= '<li>';
+	} else {
+		//$output .= '<ul>';
+	}
+	
+        $output .= html_writer::start_tag('div', array('class' => implode(' ', $classes)));
+        $output .= html_writer::start_tag('label', array('for' => 'module_' . $module->name));
+
+	if (!isset($section)) {
+	    $section = 0;
+	}
+
+	if (isset($url)) {
+	   $url .= '&section='.$section;
+	   $url = urlencode($url);
+
+	   $output .= html_writer::start_tag('span', array('class' => 'modicon'));
+	   if (isset($module->icon)) {
+            // Add an icon if we have one
+		$output .= $module->icon;
+           }
+	   $output .= html_writer::end_tag('span');
+	   $output .= html_writer::tag('a', $module->title, array('href'=> 'jumpto.php?sesskey='.sesskey().'&jump='.$url, 'class'=>'typename', 'name'=>'Agregar '.$module->title));
+	} else {
+	   $output .= html_writer::tag('strong', html_writer::tag('span', '<br>'.$module->title, array('')), array(''));
+	}
+
+        // Format the help text using markdown with the following options
+        $options = new stdClass();
+        $options->trusted = false;
+        $options->noclean = false;
+        $options->smiley = false;
+        $options->filter = false;
+        $options->para = true;
+        $options->newlines = false;
+        $options->overflowdiv = false;
+        $output .= html_writer::end_tag('label');
+        $output .= html_writer::end_tag('div');
+
+	if (isset($url)) {
+		# Is a module, then order it in a list
+		$output .= '</li>';
+	} else {
+		//$output .= '</ul>';
+	}
+
+        return $output;
+    }
+
     protected function course_modchooser_title($title, $identifier = null) {
         $module = new stdClass();
         $module->name = $title;
@@ -353,5 +475,14 @@ class core_course_renderer extends plugin_renderer_base {
         $module->title = get_string($title, $identifier);
         $module->help = '';
         return $this->course_modchooser_module($module, array('moduletypetitle'));
+    }
+
+    protected function course_modchooser_title2($title, $identifier = null, $section = null) {
+        $module = new stdClass();
+        $module->name = $title;
+        $module->types = array();
+        $module->title = get_string($title, $identifier);
+        $module->help = '';
+        return $this->course_modchooser_module_link2($module, array('moduletypetitle'), $section);
     }
 }

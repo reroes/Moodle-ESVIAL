@@ -339,7 +339,7 @@ if (!$moving && count($grade_edit_tree->categories) > 1) {
     echo html_writer::label(get_string('moveselectedto', 'grades'), 'menumoveafter');
     echo html_writer::select($grade_edit_tree->categories, 'moveafter', '', array(''=>'choosedots'), $attributes);
     $OUTPUT->add_action_handler(new component_action('change', 'submit_bulk_move'), 'menumoveafter');
-    echo '<div id="noscriptgradetreeform" class="hiddenifjs">
+    echo '<div id="noscriptgradetreeform">
             <input type="submit" value="'.get_string('go').'" />
           </div>';
 }

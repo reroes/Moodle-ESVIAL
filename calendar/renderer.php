@@ -419,6 +419,7 @@ class core_calendar_renderer extends plugin_renderer_base {
 
         $table = new html_table();
         $table->attributes = array('class'=>'calendarmonth calendartable');
+	$table->caption = 'Calendar table';
         $time = make_timestamp($calendar->year, $calendar->month);
         $table->summary = get_string('calendarheading', 'calendar', userdate($time, get_string('strftimemonthyear')));
         $table->data = array();

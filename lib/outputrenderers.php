@@ -552,7 +552,7 @@ class core_renderer extends renderer_base {
             $fullname = fullname($USER, true);
             // Since Moodle 2.0 this link always goes to the public profile page (not the course profile page)
             if ($withlinks) {
-                $username = "<a href=\"$CFG->wwwroot/user/profile.php?id=$USER->id\">$fullname</a>";
+                $username = "<a accesskey=\"2\" rel=\"Perfil\" name=\"Perfil\" href=\"$CFG->wwwroot/user/profile.php?id=$USER->id\">$fullname</a>";
             } else {
                 $username = $fullname;
             }
@@ -566,7 +566,7 @@ class core_renderer extends renderer_base {
             if (isguestuser()) {
                 $loggedinas = $realuserinfo.get_string('loggedinasguest');
                 if (!$loginpage && $withlinks) {
-                    $loggedinas .= " (<a href=\"$loginurl\">".get_string('login').'</a>)';
+                    $loggedinas .= " (<a accesskey=\"6\" rel=".get_string('login')." name=".get_string('login'). " href=\"$loginurl\">".get_string('login').'</a>)';
                 }
             } else if (is_role_switched($course->id)) { // Has switched roles
                 $rolename = '';
@@ -580,13 +580,13 @@ class core_renderer extends renderer_base {
             } else {
                 $loggedinas = $realuserinfo.get_string('loggedinas', 'moodle', $username);
                 if ($withlinks) {
-                    $loggedinas .= " (<a href=\"$CFG->wwwroot/login/logout.php?sesskey=".sesskey()."\">".get_string('logout').'</a>)';
+                    $loggedinas .= " (<a accesskey=\"7\" rel=".get_string('logout')." name=".get_string('logout')." href=\"$CFG->wwwroot/login/logout.php?sesskey=".sesskey()."\">".get_string('logout').'</a>)';
                 }
             }
         } else {
             $loggedinas = get_string('loggedinnot', 'moodle');
             if (!$loginpage && $withlinks) {
-                $loggedinas .= " (<a href=\"$loginurl\">".get_string('login').'</a>)';
+                $loggedinas .= " (<a accesskey=\"6\" rel=".get_string('login')." name=".get_string('login')." href=\"$loginurl\">".get_string('login').'</a>)';
             }
         }
 
@@ -1493,7 +1493,9 @@ class core_renderer extends renderer_base {
         $output .= html_writer::select($select->options, $select->name, $select->selected, $select->nothing, $select->attributes);
 
         $go = html_writer::empty_tag('input', array('type'=>'submit', 'value'=>get_string('go')));
-        $output .= html_writer::tag('noscript', html_writer::tag('div', $go), array('class' => 'inline'));
+	//Se cambió la siguiente linea  por la que le sigue, ya que es necesario el boton para que sea accesible.
+        //$output .= html_writer::tag('noscript', html_writer::tag('div', $go), array('class' => 'inline'));
+        $output .= html_writer::tag('div', $go, array('class' => 'inline'));
 
         $nothing = empty($select->nothing) ? false : key($select->nothing);
         $this->page->requires->yui_module('moodle-core-formautosubmit',
@@ -1631,7 +1633,10 @@ class core_renderer extends renderer_base {
 
         if (!$select->showbutton) {
             $go = html_writer::empty_tag('input', array('type'=>'submit', 'value'=>get_string('go')));
-            $output .= html_writer::tag('noscript', html_writer::tag('div', $go), array('class' => 'inline'));
+            //Se cambió la siguiente linea  por la que le sigue, ya que es necesario el boton para que sea accesible.
+            //$output .= html_writer::tag('noscript', html_writer::tag('div', $go), array('class' => 'inline'));
+            $output .= html_writer::tag('div', $go, array('class' => 'inline'));
+
             $nothing = empty($select->nothing) ? false : key($select->nothing);
             $this->page->requires->yui_module('moodle-core-formautosubmit',
                 'M.core.init_formautosubmit',

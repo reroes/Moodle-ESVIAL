@@ -40,7 +40,7 @@ a.dimmed_text:visited,
 .usersuspended a:visited,
 .dimmed_category,
 .dimmed_category a {
-    color: #AAA;
+    color: #074d83;
 }
 .activity.label .dimmed_text {
     opacity: 0.5;
@@ -500,7 +500,7 @@ body.tag .managelink {padding: 5px;}
 .path-backup .mform .fitem fieldset.felement {margin-left:0;width:auto;padding-left:0;}
 .path-backup .notification.dependencies_enforced {text-align:center;color:#A00;font-weight:bold;}
 .path-backup .backup_progress {text-align:center;}
-.path-backup .backup_progress span.backup_stage {color:#999;}
+.path-backup .backup_progress span.backup_stage {color:#000;}
 .path-backup .backup_progress .backup_stage.backup_stage_current {font-weight:bold;color:inherit;}
 .path-backup .backup_progress .backup_stage.backup_stage_next {}
 .path-backup .backup_progress span.backup_stage.backup_stage_complete {color:inherit;}

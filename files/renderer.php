@@ -102,8 +102,14 @@ class core_files_renderer extends plugin_renderer_base {
      * @return string HTML fragment
      */
     public function render_form_filemanager($fm) {
+        global $CFG;
         static $filemanagertemplateloaded;
+
+	$cssFile = $CFG->wwwroot."/files/renderer.css";
+	$jsFile = $CFG->wwwroot."/files/renderer.js";
         $html = $this->fm_print_generallayout($fm);
+	$html .= "<link rel='stylesheet' href='" . $cssFile . "'>";
+	$html .= "<script type=\"text/javascript\" src=\"". $jsFile ."\"></script>";
         $module = array(
             'name'=>'form_filemanager',
             'fullpath'=>'/lib/form/filemanager.js',
@@ -123,6 +129,10 @@ class core_files_renderer extends plugin_renderer_base {
                     array($this->filemanager_js_templates()), true, $module);
         }
         $this->page->requires->js_init_call('M.form_filemanager.init', array($fm->options), true, $module);
+
+        $html .= "<div id=\"fileselect\"><div id=\"acc_files\" class=\"acc_files_hidden\">";
+	$html .= "<iframe sandbox='allow-top-navigation allow-forms allow-same-origin allow-scripts' src='".$fm->get_simple_nonjsurl()."' height='160' width='600' style='border:1px solid #000'></iframe>";
+	$html .= "<br><a href=\"#fileselector\" onclick='toggle();'>Cambiar la visualización para subir archivos</a></div></div>";
 
         // non javascript file manager
         $html .= '<noscript>';
@@ -193,7 +203,8 @@ class core_files_renderer extends plugin_renderer_base {
         $loading = get_string('loading', 'repository');
 
         $html = '
-<div id="filemanager-'.$client_id.'" class="filemanager fm-loading">
+<div id="fileselector">
+<div id="filemanager-'.$client_id.'" class="filemanager fm-loading" name="fileselector">
     <div class="fp-restrictions">
         '.$restrictions.'
         <span class="dnduploadnotsupported-message"> - '.$strdndnotsupported.' </span>
@@ -201,14 +212,15 @@ class core_files_renderer extends plugin_renderer_base {
     <div class="fp-navbar">
         <div class="filemanager-toolbar">
             <div class="fp-toolbar">
-                <div class="{!}fp-btn-add"><a href="#"><img src="'.$this->pix_url('a/add_file').'" /> '.$straddfile.'</a></div>
+		<div class="{!}fp-btn-simple"><a href="#fileselect" onclick="toggle()"><img src="'.$this->pix_url('a/add_file').'" /> Forma simple </a></div>
+                <div class="{!}fp-btn-add"><a href="#" id="add-button"><img src="'.$this->pix_url('a/add_file').'" /> '.$straddfile.'</a></div>
                 <div class="{!}fp-btn-mkdir"><a href="#"><img src="'.$this->pix_url('a/create_folder').'" /> '.$strmakedir.'</a></div>
                 <div class="{!}fp-btn-download"><a href="#"><img src="'.$this->pix_url('a/download_all').'" /> '.$strdownload.'</a></div>
             </div>
             <div class="{!}fp-viewbar">
-                <a class="{!}fp-vb-icons" href="#"></a>
-                <a class="{!}fp-vb-details" href="#"></a>
-                <a class="{!}fp-vb-tree" href="#"></a>
+                <a class="{!}fp-vb-icons" href="#" name="Vista de íconos">Vista de íconos</a>
+                <a class="{!}fp-vb-details" href="#" name="Vista detallada" >Vista detallada</a>
+                <a class="{!}fp-vb-tree" href="#" name="Vista de arbol">Vista de árbol</a>
             </div>
         </div>
         <div class="fp-pathbar">
@@ -227,6 +239,7 @@ class core_files_renderer extends plugin_renderer_base {
         </div>
         <div class="filemanager-updating">'.$icon_progress.'</div>
     </div>
+</div>
 </div>';
         return preg_replace('/\{\!\}/', '', $html);
     }
@@ -380,7 +393,10 @@ class core_files_renderer extends plugin_renderer_base {
         <button class="{!}fp-file-zip">'.get_string('zip', 'editor').'</button>
         <button class="{!}fp-file-unzip">'.get_string('unzip').'</button>
         <div class="fp-hr"></div>
-        <table>
+        <table><caption class="hidden">Opciones para subir carpetas o archivos</caption>
+	    <tr> 
+		<th class="hidden">File Layout</th>
+	    </tr>
             <tr class="{!}fp-saveas"><td class="mdl-right"><label>'.get_string('name', 'moodle').'</label>:</td>
             <td class="mdl-left"><input type="text"/></td></tr>
             <tr class="{!}fp-author"><td class="mdl-right"><label>'.get_string('author', 'repository').'</label>:</td>
@@ -539,9 +555,9 @@ class core_files_renderer extends plugin_renderer_base {
                     <div class="{!}fp-tb-message"></div>
                 </div>
                 <div class="{!}fp-viewbar">
-                    <a class="{!}fp-vb-icons" href="#"></a>
-                    <a class="{!}fp-vb-details" href="#"></a>
-                    <a class="{!}fp-vb-tree" href="#"></a>
+                    <a class="{!}fp-vb-icons" href="#" name="Vista de íconos">Vista de íconos</a>
+                    <a class="{!}fp-vb-details" href="#" name="Vista detallada" >Vista detallada</a>
+                    <a class="{!}fp-vb-tree" href="#" name="Vista de arbol">Vista de árbol</a>
                 </div>
                 <div class="fp-clear-left"></div>
             </div>
@@ -673,7 +689,11 @@ class core_files_renderer extends plugin_renderer_base {
         <img src="'.$this->pix_url('i/loading_small').'" />
     </div>
     <form>
-        <table>
+        <table><caption class="hidden">Opciones para subir carpetas o archivos</caption>
+	    <tr> 
+		<th class="hidden">Label</th>
+		<th class="hidden">Input</th>
+	    </tr>
             <tr class="{!}fp-linktype-2">
                 <td class="mdl-right"></td>
                 <td class="mdl-left"><input type="radio"/><label>&nbsp;'.get_string('makefileinternal', 'repository').'</label></td></tr>
@@ -737,7 +757,11 @@ class core_files_renderer extends plugin_renderer_base {
 <div class="fp-upload-form mdl-align">
     <div class="fp-content-center">
         <form enctype="multipart/form-data" method="POST">
-            <table >
+            <table ><caption class="hidden">Opciones para subir carpetas o archivos</caption>
+	       <tr> 
+		    <th class="hidden">Label</th>
+		    <th class="hidden">Input</th>
+	        </tr>
                 <tr class="{!}fp-file">
                     <td class="mdl-right"><label>'.get_string('attachment', 'repository').'</label>:</td>
                     <td class="mdl-left"><input type="file"/></td></tr>

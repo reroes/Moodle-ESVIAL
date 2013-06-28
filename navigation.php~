@@ -1,0 +1,4 @@
+<?php
+$PAGE = $this->page;
+$PAGE->navigation;
+?>

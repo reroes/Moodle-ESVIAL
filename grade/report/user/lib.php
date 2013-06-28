@@ -552,11 +552,16 @@ class grade_report_user extends grade_report {
      * @return string
      */
     public function print_table($return=false) {
+	 global $CFG;
+	 $cssFile = $CFG->wwwroot."/lib/outputcomponents.css";
+	 $html = "<link rel='stylesheet' href='" . $cssFile . "'>";
+
          $maxspan = $this->maxdepth;
 
         /// Build table structure
-        $html = "
+        $html .= "
             <table cellspacing='0' cellpadding='0' class='boxaligncenter generaltable user-grade'>
+	    <caption class=\"hidden\">Tabla de calificaciones</caption>
             <thead>
                 <tr>
                     <th class=\"header\" colspan='$maxspan'>".$this->tableheaders[0]."</th>\n";

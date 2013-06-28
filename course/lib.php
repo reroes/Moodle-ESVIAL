@@ -1851,7 +1851,8 @@ function print_section_add_menus($course, $section, $modnames = null, $vertical=
         $modchooser .= html_writer::tag('span', $icon . $span, array('class' => 'section-modchooser-link'));
         $modchooser.= html_writer::end_tag('div');
         $modchooser.= html_writer::end_tag('div');
-
+	$modchooser .= html_writer::tag('a', 'Ir a otra vista para agregar recursos y actividades', array('href'=> $CFG->wwwroot.'/course/other-view.php?id='.$course->id.'&section='.$section, 'class'=>'skip', 'name'=>'Ir a otra vista para agregar recursos y actividades'));
+	$output .= html_writer::tag('a', 'Ir a otra vista para agregar recursos y actividades', array('href'=> $CFG->wwwroot.'/course/other-view.php?id='.$course->id.'&section='.$section, 'class'=>'skip', 'name'=>'Ir a otra vista para agregar recursos y actividades'));
         // Wrap the normal output in a noscript div
         $usemodchooser = get_user_preferences('usemodchooser', $CFG->modchooserdefault);
         if ($usemodchooser) {
@@ -2670,25 +2671,28 @@ function print_course_search($value="", $return=false, $format="plain") {
 
     if ($format == 'plain') {
         $output  = '<form id="'.$id.'" action="'.$CFG->wwwroot.'/course/search.php" method="get">';
-        $output .= '<fieldset class="coursesearchbox invisiblefieldset">';
+        //$output .= '<fieldset class="coursesearchbox invisiblefieldset">';
         $output .= '<label for="coursesearchbox">'.$strsearchcourses.': </label>';
         $output .= '<input type="text" id="coursesearchbox" size="30" name="search" value="'.s($value).'" />';
         $output .= '<input type="submit" value="'.get_string('go').'" />';
-        $output .= '</fieldset></form>';
+        //$output .= '</fieldset>';
+	$output .= '</form>';
     } else if ($format == 'short') {
         $output  = '<form id="'.$id.'" action="'.$CFG->wwwroot.'/course/search.php" method="get">';
-        $output .= '<fieldset class="coursesearchbox invisiblefieldset">';
+        //$output .= '<fieldset class="coursesearchbox invisiblefieldset">';
         $output .= '<label for="shortsearchbox">'.$strsearchcourses.': </label>';
         $output .= '<input type="text" id="shortsearchbox" size="12" name="search" value="'.s($value).'" />';
         $output .= '<input type="submit" value="'.get_string('go').'" />';
-        $output .= '</fieldset></form>';
+        //$output .= '</fieldset>';
+	$output .= '</form>';
     } else if ($format == 'navbar') {
         $output  = '<form id="coursesearchnavbar" action="'.$CFG->wwwroot.'/course/search.php" method="get">';
-        $output .= '<fieldset class="coursesearchbox invisiblefieldset">';
+        //$output .= '<fieldset class="coursesearchbox invisiblefieldset">';
         $output .= '<label for="navsearchbox">'.$strsearchcourses.': </label>';
         $output .= '<input type="text" id="navsearchbox" size="20" name="search" value="'.s($value).'" />';
         $output .= '<input type="submit" value="'.get_string('go').'" />';
-        $output .= '</fieldset></form>';
+        //$output .= '</fieldset>';
+	$output .= '</form>';
     }
 
     if ($return) {

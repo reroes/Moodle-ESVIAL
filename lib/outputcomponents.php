@@ -1472,6 +1472,10 @@ class html_writer {
      * @return string HTML code
      */
     public static function table(html_table $table) {
+	global $CFG;
+	$cssFile = $CFG->wwwroot."/lib/outputcomponents.css";
+	$output = "<link rel='stylesheet' href='" . $cssFile . "'>";
+
         // prepare table data and populate missing properties with reasonable defaults
         if (!empty($table->align)) {
             foreach ($table->align as $key => $aa) {
@@ -1530,7 +1534,7 @@ class html_writer {
                 'cellpadding'   => $table->cellpadding,
                 'cellspacing'   => $table->cellspacing,
             ));
-        $output = html_writer::start_tag('table', $attributes) . "\n";
+        $output .= html_writer::start_tag('table', $attributes) . "\n";
 
         $countcols = 0;
 
@@ -1541,6 +1545,12 @@ class html_writer {
             $output .= html_writer::start_tag('tr', array()) . "\n";
             $keys = array_keys($table->head);
             $lastkey = end($keys);
+
+	    if (isset($table->caption)) {
+		$output .= html_writer::tag('caption', $table->caption, array('class'=>'hidden'));
+	    } else {
+		//$output .= html_writer::tag('caption', 'Table without a caption defined', array());
+	    }
 
             foreach ($table->head as $key => $heading) {
                 // Convert plain string headings into html_table_cell objects
@@ -2023,6 +2033,12 @@ class html_table {
      * @var string Description of the contents for screen readers.
      */
     public $summary;
+
+    /**
+     * @var string Caption of the table.
+     */
+    public $caption;
+
 
     /**
      * Constructor

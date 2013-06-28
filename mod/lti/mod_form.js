@@ -293,19 +293,18 @@
             var createIcon = function(id, tooltip, iconUrl){
                 return Y.Node.create('<a />')
                         .set('id', id)
-                        .set('title', tooltip)
+                        .set('alt', tooltip)
                         .setStyle('margin-left', '.5em')
                         .set('href', 'javascript:void(0);')
-                        .append(Y.Node.create('<img src="' + iconUrl + '" />'));
+                        .append(Y.Node.create('<img src="' + iconUrl + '" alt="' + tooltip + ' icon" />'));
             }
 
-            var addIcon = createIcon('lti_add_tool_type', M.str.lti.addtype, this.settings.add_icon_url);
+            var addIcon = createIcon('lti_add_tool_type', M.str.lti.addtype + ' (opens in new window)', this.settings.add_icon_url);
             var editIcon = createIcon('lti_edit_tool_type', M.str.lti.edittype, this.settings.edit_icon_url);
             var deleteIcon  = createIcon('lti_delete_tool_type', M.str.lti.deletetype, this.settings.delete_icon_url);
 
             editIcon.on('click', function(e){
                 var toolTypeId = typeSelector.get('value');
-
                 if(self.getSelectedToolTypeOption().getAttribute('editable')){
                     window.open(self.settings.instructor_tool_type_edit_url + '&action=edit&typeid=' + toolTypeId, 'edit_tool');
                 } else {

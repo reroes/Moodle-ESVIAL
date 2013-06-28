@@ -98,6 +98,7 @@
     $logparam = 'id='. $course->id;
     $loglabel = 'view';
     $infoid = $course->id;
+
     if ($section and $section > 0) {
         $loglabel = 'view section';
 
@@ -153,7 +154,7 @@
             } else if (!empty($return)) {
                 redirect($CFG->wwwroot . $return);
             } else {
-                $url = new moodle_url($PAGE->url, array('notifyeditingon' => 1));
+                $url = new moodle_url($PAGE->url, array('notifyeditingon' => 1));		
                 redirect($url);
             }
         } else if (($edit == 0) and confirm_sesskey()) {
@@ -282,7 +283,7 @@
     if (include_course_ajax($course, $modnamesused)) {
         // Add the module chooser
         $renderer = $PAGE->get_renderer('core', 'course');
-        echo $renderer->course_modchooser(get_module_metadata($course, $modnames, $displaysection), $course);
+        echo $renderer->course_modchooser(get_module_metadata($course, $modnames, $displaysection), $course, $displaysection);
     }
 
     echo $OUTPUT->footer();

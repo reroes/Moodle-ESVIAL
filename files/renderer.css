@@ -1,0 +1,21 @@
+.acc_files_visible {
+    visibility:visible;
+    height:100%; 
+    padding:0px;
+}
+.acc_files_hidden {
+    visibility:hidden;
+    height:0px; 
+    padding:0px 10px;
+}
+a.fp-vb-tree, a.fp-vb-details, a.fp-vb-icons {
+    font-size:0px;
+}
+
+th.hidden, caption.hidden {
+    font-size:0px;
+}
+
+#fileselect {
+    padding: 15px;
+}

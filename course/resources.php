@@ -41,6 +41,7 @@ foreach ($allmodules as $key=>$module) {
     if (!file_exists($libfile)) {
         continue;
     }
+
     $archetype = plugin_supports('mod', $modname, FEATURE_MOD_ARCHETYPE, MOD_ARCHETYPE_OTHER);
     if ($archetype != MOD_ARCHETYPE_RESOURCE) {
         continue;
@@ -139,5 +140,4 @@ foreach ($cms as $cm) {
 }
 
 echo html_writer::table($table);
-
 echo $OUTPUT->footer();

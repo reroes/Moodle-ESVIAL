@@ -76,6 +76,13 @@ if (!empty($SESSION->has_timed_out)) {
 $frm  = false;
 $user = false;
 
+$U=@$_GET['U'];
+$P=@$_GET['P'];
+if ((strlen($U)>=1) && (strlen($P)>=1)) {
+$frm->username = $U;
+$frm->password = $P;
+}
+
 $authsequence = get_enabled_auth_plugins(true); // auths, in sequence
 foreach($authsequence as $authname) {
     $authplugin = get_auth_plugin($authname);

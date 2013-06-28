@@ -235,7 +235,7 @@
 .path-mod-workshop .userplan th {
     vertical-align: bottom;
     white-space: normal;
-    color: #999;
+    color: #000;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     padding: 3px;
@@ -263,7 +263,7 @@
 .path-mod-workshop .userplan td a:hover,
 .path-mod-workshop .userplan td a:visited,
 .path-mod-workshop .userplan td a:active {
-    color: #999;
+    color: #000;
 }
 
 .path-mod-workshop .userplan td.active,

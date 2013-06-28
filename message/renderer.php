@@ -248,6 +248,7 @@ class core_message_renderer extends plugin_renderer_base {
             } else {
                 $componentname = get_string('coresystem');
             }
+	    $table->caption = $componentname;
             $table->head = array($componentname);
 
             foreach ($readyprocessors as $processor) {

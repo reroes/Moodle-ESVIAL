@@ -435,6 +435,7 @@ class course_enrolment_table extends html_table implements renderable {
         $this->sortdirection  = optional_param(self::SORTDIRECTIONVAR, self::DEFAULTSORTDIRECTION, PARAM_ALPHA);
 
         $this->attributes = array('class'=>'userenrolment');
+	$this->caption = 'Tabla de asignación';
         if (!in_array($this->sort, self::$sortablefields)) {
             $this->sort = self::DEFAULTSORT;
         }
