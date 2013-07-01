@@ -218,9 +218,9 @@ class core_files_renderer extends plugin_renderer_base {
                 <div class="{!}fp-btn-download"><a href="#"><img src="'.$this->pix_url('a/download_all').'" /> '.$strdownload.'</a></div>
             </div>
             <div class="{!}fp-viewbar">
-                <a class="{!}fp-vb-icons" href="#" name="Vista de íconos">Vista de íconos</a>
-                <a class="{!}fp-vb-details" href="#" name="Vista detallada" >Vista detallada</a>
-                <a class="{!}fp-vb-tree" href="#" name="Vista de arbol">Vista de árbol</a>
+                <a class="{!}fp-vb-icons" href="#" name="Vista de íconos" style="font-size:0px;">Vista de íconos</a>
+                <a class="{!}fp-vb-details" href="#" name="Vista detallada" style="font-size:0px;">Vista detallada</a>
+                <a class="{!}fp-vb-tree" href="#" name="Vista de arbol" style="font-size:0px;">Vista de árbol</a>
             </div>
         </div>
         <div class="fp-pathbar">
@@ -555,9 +555,9 @@ class core_files_renderer extends plugin_renderer_base {
                     <div class="{!}fp-tb-message"></div>
                 </div>
                 <div class="{!}fp-viewbar">
-                    <a class="{!}fp-vb-icons" href="#" name="Vista de íconos">Vista de íconos</a>
-                    <a class="{!}fp-vb-details" href="#" name="Vista detallada" >Vista detallada</a>
-                    <a class="{!}fp-vb-tree" href="#" name="Vista de arbol">Vista de árbol</a>
+                    <a class="{!}fp-vb-icons" href="#" name="Vista de íconos" style="font-size:0px;">Vista de íconos</a>
+                    <a class="{!}fp-vb-details" href="#" name="Vista detallada" style="font-size:0px;">Vista detallada</a>
+                    <a class="{!}fp-vb-tree" href="#" name="Vista de arbol" style="font-size:0px;">Vista de árbol</a>
                 </div>
                 <div class="fp-clear-left"></div>
             </div>
@@ -689,10 +689,10 @@ class core_files_renderer extends plugin_renderer_base {
         <img src="'.$this->pix_url('i/loading_small').'" />
     </div>
     <form>
-        <table><caption class="hidden">Opciones para subir carpetas o archivos</caption>
+        <table><caption style="font-size:0px;">Opciones para subir carpetas o archivos</caption>
 	    <tr> 
-		<th class="hidden">Label</th>
-		<th class="hidden">Input</th>
+		<th style="font-size:0px;">Etiqueta</th>
+		<th style="font-size:0px;">Entrada</th>
 	    </tr>
             <tr class="{!}fp-linktype-2">
                 <td class="mdl-right"></td>
@@ -757,10 +757,10 @@ class core_files_renderer extends plugin_renderer_base {
 <div class="fp-upload-form mdl-align">
     <div class="fp-content-center">
         <form enctype="multipart/form-data" method="POST">
-            <table ><caption class="hidden">Opciones para subir carpetas o archivos</caption>
+            <table><caption style="font-size:0px;>Opciones para subir carpetas o archivos</caption>
 	       <tr> 
-		    <th class="hidden">Label</th>
-		    <th class="hidden">Input</th>
+		    <th style="font-size:0px;">Etiqueta</th>
+		    <th style="font-size:0px;">Entrada<br></th>
 	        </tr>
                 <tr class="{!}fp-file">
                     <td class="mdl-right"><label>'.get_string('attachment', 'repository').'</label>:</td>
