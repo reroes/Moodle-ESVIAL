@@ -12,7 +12,7 @@ Instrucciones para Instalación de Moodle ESVIAL:
 Si se desea realizar la instalación de Moodle ESVIAL, se puede llevar a cabo de
 la siguiente forma:
 -------------------------------------------------------------------------------
-1. Descargar Moodle-ESVIAL.zip del sitio ()
+1. Descargar Moodle-ESVIAL.zip
 -------------------------------------------------------------------------------
 2. Descomprimir el archivo Moodle-ESVIAL.zip y colocarlo en /var/www/ o donde 
 esté configurado su servidor web.
