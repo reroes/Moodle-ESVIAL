@@ -12,22 +12,19 @@ Instrucciones para Instalación de Moodle ESVIAL:
 Si se desea realizar la instalación de Moodle ESVIAL, se puede llevar a cabo de
 la siguiente forma:
 -------------------------------------------------------------------------------
-1. Descargar Moodle-ESVIAL.zip
+1. Descargar Moodle-ESVIAL
 -------------------------------------------------------------------------------
-2. Descomprimir el archivo Moodle-ESVIAL.zip y colocarlo en /var/www/ o donde 
-esté configurado su servidor web.
+2. Crear la carpeta moodledata a utilizar.
 -------------------------------------------------------------------------------
-3. Crear la carpeta moodledata a utilizar.
+3. Instalar Moodle-ESVIAL
 -------------------------------------------------------------------------------
-4. Instalar Moodle-ESVIAL
--------------------------------------------------------------------------------
-5. Cambiar el tema al de Moodle-ESVIAL de la siguiente forma:
+4. Cambiar el tema al de Moodle-ESVIAL de la siguiente forma:
    "Administración del sitio → Apariencia → Temas → Seleccionar Tema"
 Ahí se debe presionar el botón "Cambiar tema" de Predeterminado y seleccionar:
 "ESVIAL Formal White", luego, si lo desea, cambie el logo en:
    "Administración del sitio → Apariencia → Temas → ESVIAL Formal White"
 -------------------------------------------------------------------------------
-6. Configurar editor de textos TinyMCE. 
+5. Configurar editor de textos TinyMCE. 
 Ir a 
 Administración del sitio → Extensiones → Editores de texto → Gestionar editores.  
 y en el área de "Barra de herramientas del editor" se coloca el siguiente texto:
@@ -42,7 +39,7 @@ ltr,rtl
 bullist,numlist,outdent,indent,|,link,unlink,|,image,nonbreaking,charmap,table,
 |,code
 -------------------------------------------------------------------------------
-7. Configurar Mapa del Sitio.
+6. Configurar Mapa del Sitio.
 Primero es necesario activar la edición del sitio, luego se presiona el atajo de 
 teclado 3 o se dirige a la página sitemap.php y agrega el bloque "Navegación 
 Simple" en la página sitemap.php, se presiona el botón de mover en el bloque y 
@@ -84,16 +81,16 @@ Peso: 1
 
 Y por último presionar el botón "Guardar cambios"
 -------------------------------------------------------------------------------
-8. Descomprimir el archivo jwplayer-master.zip y colocarlo en la carpeta filter 
+7. Descomprimir el archivo jwplayer-master.zip y colocarlo en la carpeta filter 
 de la carpeta de moodle. 
 -------------------------------------------------------------------------------
-9. Instalar el filtro jwplayer
+8. Instalar el filtro jwplayer
 Nota: este filtro tiende a dar problemas para instalar otros paquetes, por lo 
 que se recomienda mover la carpeta fuera de la carpeta de Moodle al querer 
 instalar otros paquetes ó utilizar otro reproductor de video que tenga funciona-
 lidades de accesibilidad.
 -------------------------------------------------------------------------------
-10. Configuración del filtro jwplayer
+9. Configuración del filtro jwplayer
 Para activar el filtro es necesario ubicarse en:
 
          Administración del sitio → Extensiones → Filtros → Gestionar filtros 
