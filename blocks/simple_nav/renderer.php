@@ -186,7 +186,7 @@ class block_simple_nav_renderer extends plugin_renderer_base {
 			$myclass_a = '';
 		}
 		elseif ($mytype == 'login-change_password') {
-			$myurl =$CFG->wwwroot.'/login/change_password.php?id='.$USER->id;
+			$myurl =$CFG->wwwroot.'/login/change_password.php';
 			$myclass_ul_open = '';
 			$myclass_li = 'type_profile depth_1'.$mycollapsed.' contains_branch';
 			$myclass_p = 'tree_item branch '.$myclass.' navigation_node';
