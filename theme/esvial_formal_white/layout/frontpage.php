@@ -3,11 +3,11 @@
 defined('MOODLE_INTERNAL') || die();
 
 $hasheading = $PAGE->heading;
-$index = '<br><a class="skip" accesskey="1" rel="Página Principal" name="Página Principal" href="'.$CFG->wwwroot.'">Ir a la página principal</a><br>';
-$menu = '<a class="skip" accesskey="3" rel="Mapa del Sitio" name="Mapa del Sitio" href="'.$CFG->wwwroot.'/sitemap.php">Ir al mapa del sitio</a><br>';
-$courses = '<a class="skip" accesskey="4" rel="Listado de cursos" name="Listado de cursos" href="'.$CFG->wwwroot.'/course/">Ir al listado de cursos</a><br>';
+$index = '<br><a class="skip" accesskey="1" rel="Página Principal" name="Página Principal" href="'.$CFG->wwwroot.'">Ir a la página principal</a> ';
+$menu = '<a class="skip" accesskey="3" rel="Mapa del Sitio" name="Mapa del Sitio" href="'.$CFG->wwwroot.'/sitemap.php">Ir al mapa del sitio</a> ';
+$courses = '<a class="skip" accesskey="4" rel="Listado de cursos" name="Listado de cursos" href="'.$CFG->wwwroot.'/course/">Ir al listado de cursos</a> ';
 $calendar = '<a class="skip" accesskey="5" rel="Calendario" name="Calendario" href="'.$CFG->wwwroot.'/calendar/">Ir al calendario</a><br>';
-$accessibility = '<a class="skip" accesskey="0" rel="Accesibilidad" name="Ayuda de Accesibilidad" href="'.$CFG->wwwroot.'/accessibility.php">Ir a la ayuda de accesibilidad</a><br>';
+$accessibility = '<a class="skip" accesskey="0" rel="Accesibilidad" name="Ayuda de Accesibilidad" href="'.$CFG->wwwroot.'/accessibility.php">Ir a la ayuda de accesibilidad</a> ';
 $PAGE->set_headingmenu($index.$menu.$accessibility.$courses.$calendar);
 
 $hasnavbar = (empty($PAGE->layout_options['nonavbar']) && $PAGE->has_navbar());
