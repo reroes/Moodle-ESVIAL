@@ -82,15 +82,15 @@ Peso: 1
 Y por último presionar el botón "Guardar cambios"
 -------------------------------------------------------------------------------
 7. Descomprimir el archivo jwplayer-master.zip y colocarlo en la carpeta filter 
-de la carpeta de moodle. 
+de la carpeta de moodle con el nombre streaming. 
 -------------------------------------------------------------------------------
-8. Instalar el filtro jwplayer
-Nota: este filtro tiende a dar problemas para instalar otros paquetes, por lo 
-que se recomienda mover la carpeta fuera de la carpeta de Moodle al querer 
-instalar otros paquetes ó utilizar otro reproductor de video que tenga funciona-
-lidades de accesibilidad.
+8. Instalar el filtro jwplayer (streaming)
+Nota: este filtro puede dar problemas para instalar otros paquetes, por lo que 
+si da problemas se recomienda mover la carpeta fuera de la carpeta de Moodle al 
+querer instalar otros paquetes ó utilizar otro reproductor de video que tenga 
+funcionalidades de accesibilidad.
 -------------------------------------------------------------------------------
-9. Configuración del filtro jwplayer
+9. Configuración del filtro jwplayer (streaming)
 Para activar el filtro es necesario ubicarse en:
 
          Administración del sitio → Extensiones → Filtros → Gestionar filtros 
