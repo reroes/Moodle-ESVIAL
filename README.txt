@@ -118,3 +118,20 @@ ficado para agregar más links.
 nativo donde se consideró necesario y botón de submit a los forms que lo 
 necesitaran al navegar con el teclado.
 
+
+*******************************************************************************
+*******************************************************************************
+
+
+Para instalar Moodle 2.4 seguir los pasos señalados en cualquiera de los 
+siguientes links:
+
+https://github.com/moodle/moodle (descarga desde el repositorio y pasos 
+generales para la instalación)
+http://docs.moodle.org/24/en/Installing_Moodle (documentación más detallada de 
+la instalación)
+
+
+*******************************************************************************
+*******************************************************************************
+
