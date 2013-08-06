@@ -104,12 +104,28 @@ y colocar el filtro como “conectado”.
 ***********************Mejoras realizadas al Moodle 2.4:***********************
 *******************************************************************************
 *******************************************************************************
-1. Bloque de accesibilidad de Moodle.
+1. Bloque de accesibilidad de Moodle. (Instalar y agregar el bloque).
 2. Links para mejorar la navegación en la plataforma.
 3. Plugin para medir accesibilidad del contenido en TinyMCE.
 4. Página de accesibilidad para visualizar la ayuda de accesibilidad en Moodle.
-5. Accesskeys para mejorar la navegación. El listado de accesskeys se encuentra
-en la página de accesibilidad.
+5. Accesskeys para mejorar la navegación. A continuación se encuentra el listado
+de accesskeys.
+
++-------+---------------------------------------------------------------------------------+
+| Atajo |										  |
+|  de   | Página Asociada 								  |
+|Teclado|										  |
++-------+---------------------------------------------------------------------------------+
+|1	| Página de inicio								  |
+|2	| Perfil de usuario (solo en el caso de que se tenga abierta la sesión)		  |
+|3	| Mapa del Sitio								  |
+|4	| Listado de Cursos								  |
+|5	| Calendario de actividades							  |
+|6	| Ingreso al sistema de Moodle (solo en el caso de que no tenga abierta la sesión)|
+|7	| Egreso del sistema de Moodle (solo en el caso de que tenga abierta la sesión)   |
+|0	| Página sobre accesibilidad							  |
++-------+---------------------------------------------------------------------------------+
+
 6. Nueva vista para agregar recursos y/o actividades
 7. Nueva vista para subir archivos
 8. Mapa del sitio. Se utiliza el bloque de navegación simple el cual está modi-
