@@ -27,7 +27,8 @@ Ahí se debe presionar el botón "Cambiar tema" de Predeterminado y seleccionar:
 5. Configurar editor de textos TinyMCE. 
 Ir a 
 Administración del sitio → Extensiones → Editores de texto → Gestionar editores.  
-y en el área de "Barra de herramientas del editor" se coloca el siguiente texto:
+Darle click a "configuración" de Editor TinyMCE HTML y en el área de 
+"Barra de herramientas del editor" se coloca el siguiente texto:
 
 save,preview,print,|,fontselect,fontsizeselect,formatselect,|,undo,redo,|,search
 ,replace,|,fullscreen,fullpage
