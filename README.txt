@@ -81,7 +81,7 @@ Peso: 1
 
 Y por último presionar el botón "Guardar cambios"
 -------------------------------------------------------------------------------
-7. Descomprimir el archivo jwplayer-master.zip y colocarlo en la carpeta filter 
+7. Descomprimir el archivo streaming.zip y colocarlo en la carpeta filter 
 de la carpeta de moodle con el nombre streaming. 
 -------------------------------------------------------------------------------
 8. Instalar el filtro jwplayer (streaming)
