@@ -82,22 +82,12 @@ Peso: 1
 
 Y por último presionar el botón "Guardar cambios"
 -------------------------------------------------------------------------------
-7. Descomprimir el archivo streaming.zip y colocarlo en la carpeta filter 
-de la carpeta de moodle con el nombre streaming. 
+7. Descomprimir el archivo JPlayer.zip y colocarlo en la carpeta mod de la 
+carpeta de Moodle con el nombre jplayer.
 -------------------------------------------------------------------------------
-8. Instalar el filtro jwplayer (streaming)
-Nota: este filtro puede dar problemas para instalar otros paquetes, por lo que 
-si da problemas se recomienda mover la carpeta fuera de la carpeta de Moodle al 
-querer instalar otros paquetes ó utilizar otro reproductor de video que tenga 
-funcionalidades de accesibilidad.
+8. Instalar el módulo jplayer 
 -------------------------------------------------------------------------------
-9. Configuración del filtro jwplayer (streaming)
-Para activar el filtro es necesario ubicarse en:
 
-         Administración del sitio → Extensiones → Filtros → Gestionar filtros 
-
-y colocar el filtro como “conectado”.
--------------------------------------------------------------------------------
 
 *******************************************************************************
 *******************************************************************************
@@ -134,7 +124,7 @@ ficado para agregar más links.
 10. Cambios generales para agregar caption y header a las tablas, texto alter-
 nativo donde se consideró necesario y botón de submit a los forms que lo 
 necesitaran al navegar con el teclado.
-
+11. Módulo de videos JPlayer (Instalar el módulo)
 
 *******************************************************************************
 *******************************************************************************
