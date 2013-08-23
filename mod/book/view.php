@@ -148,14 +148,14 @@ $navprevdisicon = right_to_left() ? 'nav_next_dis' : 'nav_prev_dis';
 
 $chnavigation = '';
 if ($previd) {
-    $chnavigation .= '<a title="'.get_string('navprev', 'book').'" href="view.php?id='.$cm->id.
-            '&amp;chapterid='.$previd.'"><img src="'.$OUTPUT->pix_url($navprevicon, 'mod_book').'" class="icon" alt="'.get_string('navprev', 'book').'"/></a>';
+    $chnavigation .= '<a title="'.get_string('navprev', 'book').'" accesskey="k" href="view.php?id='.$cm->id.
+            '&amp;chapterid='.$previd.'#bookcontent"><img src="'.$OUTPUT->pix_url($navprevicon, 'mod_book').'" class="icon" alt="'.get_string('navprev', 'book').'"/></a><a title="inicio" href="view.php?id='.$cm->id.'" accesskey="h"><img src="'.$OUTPUT->pix_url('chapter', 'mod_book').'" class="icon" alt="Inicio"/></a>';
 } else {
     $chnavigation .= '<img src="'.$OUTPUT->pix_url($navprevdisicon, 'mod_book').'" class="icon" alt="" />';
 }
 if ($nextid) {
-    $chnavigation .= '<a title="'.get_string('navnext', 'book').'" href="view.php?id='.$cm->id.
-            '&amp;chapterid='.$nextid.'"><img src="'.$OUTPUT->pix_url($navnexticon, 'mod_book').'" class="icon" alt="'.get_string('navnext', 'book').'" /></a>';
+    $chnavigation .= '<a title="'.get_string('navnext', 'book').'" accesskey="l" href="view.php?id='.$cm->id.
+            '&amp;chapterid='.$nextid.'#bookcontent"><img src="'.$OUTPUT->pix_url($navnexticon, 'mod_book').'" class="icon" alt="'.get_string('navnext', 'book').'" /></a>';
 } else {
     $sec = $DB->get_field('course_sections', 'section', array('id' => $cm->section));
     $returnurl = course_get_url($course, $sec);
@@ -174,7 +174,10 @@ if ($nextid) {
 echo $OUTPUT->header();
 
 // upper nav
-echo '<div class="navtop">'.$chnavigation.'</div>';
+echo '<div id="top"></div>';
+
+echo '<div id="bookcontent"></div>';
+// echo '<div class="navtop">'.$chnavigation.'</div>';
 
 // chapter itself
 echo $OUTPUT->box_start('generalbox book_content');
@@ -196,6 +199,7 @@ echo format_text($chaptertext, $chapter->contentformat, array('noclean'=>true, '
 echo $OUTPUT->box_end();
 
 // lower navigation
+echo '<div id="bottom"></div>';
 echo '<div class="navbottom">'.$chnavigation.'</div>';
 
 echo $OUTPUT->footer();

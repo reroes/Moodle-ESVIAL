@@ -194,6 +194,7 @@ function book_get_toc($chapters, $chapter, $book, $cm, $edit) {
 
     $context = context_module::instance($cm->id);
 
+    $toc .= html_writer::start_tag('div',array('id' => 'toccontent'));
     switch ($book->numbering) {
         case BOOK_NUM_NONE:
             $toc .= html_writer::start_tag('div', array('class' => 'book_toc_none clearfix'));
